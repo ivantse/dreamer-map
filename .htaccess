@@ -1,0 +1,16 @@
+DirectoryIndex index.php index.html
+ErrorDocument 404 /404.php
+
+<Files php.ini>
+order allow,deny
+deny from all
+</Files>
+
+#non-www to www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+# Ignore files or directories 
+RewriteCond %{SCRIPT_FILENAME} !-d 
+RewriteCond %{SCRIPT_FILENAME} !-f
