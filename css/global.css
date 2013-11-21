@@ -83,9 +83,9 @@ a:hover {
 }
 
 
-::-webkit-input-placeholder { color:#B0B0B0; }
-::-moz-placeholder { color:#B0B0B0; } /* firefox 19+ */
-input:-moz-placeholder { color:#B0B0B0; }
+::-webkit-input-placeholder { color:#d7d7d7; }
+::-moz-placeholder { color:#d7d7d7; } /* firefox 19+ */
+input:-moz-placeholder { color:#d7d7d7; }
 
 label {
 	font-size:14px;
