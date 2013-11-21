@@ -107,8 +107,11 @@ function setupPolygon(polygon) {
         var newCenter = new google.maps.LatLng(e.latLng.ob, e.latLng.pb - 7);
         map.setCenter(newCenter);
         map.setZoom(6);
-        var storyDiv = document.getElementById('storyDiv');
-        storyDiv.setAttribute('style', 'display: block;');
+        var storyDiv = $('#storyDiv');
+        storyDiv.css('display', 'block');
+        $.get('story_list.php', function(data) {
+          storyDiv.html('<iframe>' + data + '</iframe>');
+        });
   });
 }
 
