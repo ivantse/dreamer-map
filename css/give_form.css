@@ -1,0 +1,20 @@
+.inline-form label{	
+	display:inline;
+}
+
+textarea{
+	width: 704px;
+	height: 100px;
+}
+
+.hide{
+	display:none;
+}
+
+#contact-section input{
+	width:90px;
+}
+
+#education-section input{
+	width:170px;
+}

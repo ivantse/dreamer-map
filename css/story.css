@@ -1,0 +1,20 @@
+#main input{
+	width:90px;
+	background-color:#088A29;
+}
+
+#heading input{
+	margin-left:160px;
+	background-color:#FAFAFA;
+	opacity:0.6;
+	width:1000px;
+	height:2000px;
+	color:#190707; 
+	border: 1px solid black;
+	opacity:0.6;
+	border-radius: 15px;
+}
+
+#p input{
+	font-size:20px;
+}

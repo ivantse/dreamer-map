@@ -1,19 +1,21 @@
 <?php
 session_start();
 require_once ('inc/global_fns.php');
-do_html_header('Give Form');
+do_html_header('Give Form','give_form.css');
 ?>
 
 <div id="form-section" style="text-align: left;">
 <div class="wrapper">
 <form id="give-form" method="post" action="give_form_post.php">
+<div class="inline-form">
 
-<label>Name</label> <input type="text" name="name" /><br />
+<label>Name</label> <input type="text" name="name" />
 
-<label>Zipcode</label> <input type="text" name="zipcode" /><br />
+<label>Zipcode</label> <input type="text" name="zipcode" />
 
 <label>State</label> 
 <select name="state">
+	<option value=""></option>
 	<option value="AL">Alabama</option>
 	<option value="AK">Alaska</option>
 	<option value="AZ">Arizona</option>
@@ -65,42 +67,58 @@ do_html_header('Give Form');
 	<option value="WV">West Virginia</option>
 	<option value="WI">Wisconsin</option>
 	<option value="WY">Wyoming</option>
-</select>			
+</select>
+</div>			
 
 <label>Story</label> <textarea name="story" rows="4" cols="27"></textarea><br />
 
-<label>Do you wish to be contacted?</label> <br />
-<form>
-<input type="checkbox" name="vehicle" value="Bike">Yes<br>
-<input type="checkbox" name="vehicle" value="Car">No
-</form>
+<input id="contact" type="checkbox" name="contact" value="true">Do you wish to be contacted?<br>
 
-<form>
-Email: <input type="text" name="Email"><br>
-Facebook: <input type="text" name="Facebook"><br>
-Twitter: <input type="text" name="Twitter"><br>
-linkedIn: <input type="text" name="LinkedIn"><br>
-</form>
+<div id="contact-section" class="inline-form hide">
+<label>Email:</label><input type="email" name="email">
+<label>Facebook:</label><input type="facebook" name="facebook">
+<label>Twitter: </label><input type="facebook" name="twitter">
+<label>linkedIn:</label><input type="linkedin" name="linkedin">
+</div>
 
-<label>Do you wish to share your education and career with Dreamers?<br />
-<form>
-<input type="checkbox" name="vehicle" value="Yes">Yes<br>
-<input type="checkbox" name="vehicle" value="No">No
-</form>
 
-<form>
-School: <input type="text" name="School"><br>
-Company: <input type="text" name="Company"><br>
-Major: <input type="text" name="Major"><br>
-Year of Graduation (Expected): <input type="text" name="Year of Graduation (Expected)"><br>
-</form>
+
+<input id="education" type="checkbox" name="education" value="true">Do you wish to share your education and career with Dreamers?<br>
+
+<div id="education-section" class="inline-form hide">
+<label>School: </label><input type="school" name="school">
+<label>Company: </label> <input type="company" name="company"><br>
+<label>Major: <label/> <input type="major" name="major">
+<label>Grad Year: </label><input type="grad_year" name="grad_year">
+</div>
 
 
 <label></label> <input type="submit" name="submit" value="Submit" /></form>
+</body>
+
 </div>
 </div>
 
+
 <script>
+
+//Is contact checked
+$("#contact").click( function(){
+	if($(this).is(':checked')){ 
+		$("#contact-section").show();
+	}else{
+		$("#contact-section").hide();
+	}
+});
+
+//Is education checked
+$("#education").click( function(){
+	if($(this).is(':checked')){ 
+		$("#education-section").show();
+	}else{
+		$("#education-section").hide();
+	}
+});
 
 //When they submit a story
 $("#give-form").submit(function(){				
@@ -114,7 +132,7 @@ $("#give-form").submit(function(){
 		dataType: "html"
 	});
 
-	alert(form_data);
+	//alert(form_data);
 		
 	//If successful, do something here
 	request.done(function(msg) {

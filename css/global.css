@@ -88,7 +88,7 @@ a:hover {
 input:-moz-placeholder { color:#B0B0B0; }
 
 label {
-	font-size:16px;
+	font-size:14px;
 	padding: 6px 0 2px 0;
 	display:block;
 	font-weight: bold;
@@ -96,7 +96,7 @@ label {
 
 input, select, textarea, .searchbtn{
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     margin: 2px;
     padding: 8px;
     color: #505050;

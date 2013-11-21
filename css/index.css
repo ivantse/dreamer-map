@@ -10,7 +10,7 @@
 	background-size: cover;
 }
 #logo-section{
-	margin: 0;
+	margin: 50px 0 20px 0;
 }
 
 #logo{
@@ -19,8 +19,14 @@
 }
 
 #mission-section{
-	background-color:rgba(197,197,197,0.8);
-	padding: 40px 0;
+	background-color:rgba(190, 214, 255, 0.7);
+	padding: 20px 0;
+}
+
+#mission-section .wrapper{
+	max-width:650px;
+	line-height:160%;
+	font-weight:bold;
 }
 
 #count-section{
@@ -31,7 +37,8 @@
 
 #count{
 	font-size:24px;
-	color: cornflowerblue;
+	color: #000;
+	font-weight: bolder;
 }
 
 #options-section {
