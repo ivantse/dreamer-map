@@ -30,7 +30,19 @@
         position: absolute;
         left: 50px; 
         width: 45%;
-        height: 100%;
+        height: 94%;
+        background-color: rgba(255, 255, 255, 0.5);
+        z-index: 99;
+        display: none;
+        padding: 20px;
+        overflow-y: scroll;
+      }
+      
+      #formDiv {
+        position: absolute; 
+        width: 800px;
+        margin: 0 auto;
+        height: 94%;
         background-color: rgba(255, 255, 255, 0.5);
         z-index: 99;
         display: none;
@@ -46,6 +58,7 @@ var map;
 var geoXml;
 var infoWindow;
 var selectedPolygon;
+var geoXmlDoc;
 
 var myStyle = [
        {
@@ -64,13 +77,22 @@ var myStyle = [
          featureType: "water",
          elementType: "labels",
          stylers: [
-           { visibility: "off" }
+           { visibility: "off" },
+           { saturation: -100 }
          ]
        },{
          featureType: "road",
          elementType: "labels",
          stylers: [
            { visibility: "off" }
+         ]
+       },{
+         featureType: "landscape",
+         elementType: "all",
+         stylers: [
+           { visibility: "on" },
+           { hue: "#1aff00" },
+           { lightness: -17 }
          ]
        }
      ];
@@ -95,12 +117,24 @@ var selectedOptions = {
 };
 
 function processDoc(doc) {
-  var geoXmlDoc = doc[0];
+  geoXmlDoc = doc[0];
   var placemarks = geoXmlDoc.placemarks;
   for (var i = 0; i < placemarks.length; i++) {
     setupPolygon(placemarks[i].polygon);
   }
 }
+/*
+function findStateAndZoom(state) {
+  var placemarks = geoXmlDoc.placemarks;
+  for (var i = 0; i < placemarks.length; i++) {
+    var stateTitle = getStateTitle(placemarks[i].polygon.title)
+    if (stateTitle == GET)
+    {
+      return placemarks[i].polygon;
+    }
+  }
+  return null;
+}*/
 
 function setupPolygon(polygon) {
   polygon.setOptions(normalOptions);
@@ -123,20 +157,25 @@ function setupPolygon(polygon) {
     var newCenter = new google.maps.LatLng(e.latLng.ob, e.latLng.pb - 7);
     map.setCenter(newCenter);
     map.setZoom(6);
-    showStories();
+    showStories(getStateTitle(polygon.title));
   });
 }
 
-function showStories() {
+function getStateTitle(state) {
+    var stateArr = state.split('(');
+    return stateArr[0].toLowerCase().replace(/ /g,'');
+}
+
+function showStories(state) {
     var storyDiv = $('#storyDiv');
     storyDiv.css('display', 'block');
-    $.get('story_list.php', function(data) {
+    $.get('story_list.php?state=' + state, function(data) {
       storyDiv.html(data);
     });
 }
 
 function hideModal() {
-  var modalContainer = $('#storyDiv');
+  var modalContainer = $('#formDiv');
   modalContainer.hide();
 }
 
@@ -158,8 +197,10 @@ function initialize() {
   var modal = getURLParameter('modal')
   if (modal) {
     $.get(modal, function(data) {
-      var modalContainer = $('#storyDiv');
-      modalContainer.html(data).show();
+      var modalContainer = $('#formDiv');
+      modalContainer.html(data);
+      modalContainer.show();
+      modalContainer.css("left", ($(window).width() / 2) - (modalContainer.width() / 2));
     });
   } else {
     infowindow = new google.maps.InfoWindow({});
@@ -183,7 +224,8 @@ function getURLParameter(name) {
   <body>
     <div id="wrapper">
         <div id="map-canvas"></div>
-        <div id="storyDiv"></div> 
+        <div id="storyDiv"></div>
+        <div id="formDiv"></div>
     </div>
   </body>
 </html>
