@@ -1,0 +1,45 @@
+#cover{
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background: url(/images/map-small.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+#logo-section{
+	margin: 60px;
+}
+
+#logo{
+	font-size:90px;
+	line-height: 80px;
+}
+
+#mission-section{
+	background-color:rgba(197,197,197,0.8);
+	padding: 40px 0;
+}
+
+#count-section{
+	background-color:rgba(255,255,255,0.5);
+	padding: 20px;
+	margin-top: 20px;
+}
+
+#count{
+	font-size:24px;
+	color: cornflowerblue;
+}
+
+#options-section {
+	margin: 20px 0;
+}
+
+#options-section a{
+	font-size: 24px;
+}
+
+
