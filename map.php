@@ -126,7 +126,7 @@ function setupPolygon(polygon) {
         var storyDiv = $('#storyDiv');
         storyDiv.css('display', 'block');
         $.get('story_list.php', function(data) {
-          storyDiv.html('<iframe>' + data + '</iframe>');
+          storyDiv.html(data);
         });
   });
 }
