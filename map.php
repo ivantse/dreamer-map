@@ -6,10 +6,14 @@
     <meta charset="utf-8">
     <style>
         html {
+            padding: 0;
+            margin: 0;
             height: 100%;
         }
         
         body {
+            padding: 0;
+            margin: 0;
             height: 100%;
             width: 100%;
         }
@@ -24,20 +28,11 @@
       
       #storyDiv {
         position: absolute;
-        top: 50px;
         left: 50px; 
-        width: 200px;
-        height: 500px;
-        background-color: grey;
+        width: 45%;
+        height: 100%;
+        background-color: white;
         opacity: .5;
-        z-index: 99;
-        display: none;
-      }
-
-      #modal-container {
-        position: absolute;
-        width: 500px;
-        background-color: grey;
         z-index: 99;
         display: none;
       }
@@ -50,6 +45,34 @@
 var map;
 var geoXml;
 var infoWindow;
+
+var myStyle = [
+       {
+         featureType: "administrative",
+         elementType: "labels",
+         stylers: [
+           { visibility: "off" }
+         ]
+       },{
+         featureType: "poi",
+         elementType: "labels",
+         stylers: [
+           { visibility: "off" }
+         ]
+       },{
+         featureType: "water",
+         elementType: "labels",
+         stylers: [
+           { visibility: "off" }
+         ]
+       },{
+         featureType: "road",
+         elementType: "labels",
+         stylers: [
+           { visibility: "off" }
+         ]
+       }
+     ];
 
 var mouseOverOptions = {
   fillColor: "#FFFF00",
@@ -91,13 +114,26 @@ function setupPolygon(polygon) {
 }
 
 function initialize() {
+  /*
   var mapOptions = {
     zoom: 4,
     minZoom: 4,
     maxZoom: 7,
     center: new google.maps.LatLng(38.891033,-88.022461)
-  };
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  };*/
+  map = new google.maps.Map(document.getElementById('map-canvas'), {
+       mapTypeControlOptions: {
+         mapTypeIds: ['mystyle', google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.TERRAIN]
+       },
+       center: new google.maps.LatLng(38.891033,-88.022461),
+       zoom: 4,
+       minZoom: 4,
+       maxZoom: 7,
+       mapTypeId: 'mystyle',
+       disableDefaultUI: true
+     });
+
+  map.mapTypes.set('mystyle', new google.maps.StyledMapType(myStyle, { name: 'My Style' }));
 
   var modal = getURLParameter('modal')
   if (modal) {
