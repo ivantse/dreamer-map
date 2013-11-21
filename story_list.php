@@ -12,8 +12,10 @@ $sql = "SELECT *
 if (! ($result = mysql_query($sql)))
 	die('Invalid query: ' . mysql_error());	
 		
-$content = '';	
+$content = '';
+$stories_count = 0;
 while($row = mysql_fetch_array($result)){
+	$stories_count++;
 	$content .= '
 		<div class="snippet">
 			<img class="left" src="images/user.png">
@@ -28,6 +30,8 @@ while($row = mysql_fetch_array($result)){
 
 do_html_header('Give Form','story_list.css');
 ?>
+
+Stories: <?php echo $stories_count; ?>
 
 <div id="info-box">
 	<?php echo $content; ?>
