@@ -23,7 +23,9 @@ do_html_header('Dreamers Together', 'index.css');
 	</div>
 	<div id="options-section">
 		<div class="wrapper">
-			<a class="button white" href="want_form.php">Get Help</a> <a class="button white" href="map.php?modal=give_form.php">Give Help</a>
+			<a class="button white" href="map.php?modal=want_form.php">Get Help</a> <a class="button white" href="map.php?modal=give_form.php">Give Help</a><br>
+			<br>
+			<a class="button white" href="map.php">Click Here To See The Map</a>
 		</div>
 	</div>
 </div>

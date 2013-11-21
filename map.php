@@ -4,6 +4,7 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/global.css" type="text/css">
     <style>
         html {
             padding: 0;
@@ -35,6 +36,7 @@
         z-index: 99;
         display: none;
         overflow-y: auto;
+        top: 75px;
       }
       
       #formDiv {
@@ -47,6 +49,17 @@
         display: none;
         padding: 20px;
       }
+      
+      #mapHeader {
+        height: 55px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+        position: absolute;
+        z-index: 99;
+        padding: 10px;
+        display: none;
+      }
+      
     </style>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script type="text/javascript" src="http://geoxml3.googlecode.com/svn/branches/polys/geoxml3.js"></script>
@@ -187,7 +200,12 @@ function showStories(state) {
 function hideModal(callback) {
   var modalContainer = $('#formDiv');
   modalContainer.hide();
+  showHeader();
   parseGeoXml(callback);
+}
+
+function showHeader() {
+  $('#mapHeader').show();
 }
 
 function initialize() {
@@ -214,6 +232,7 @@ function initialize() {
       modalContainer.css("left", ($(window).width() / 2) - (modalContainer.width() / 2));
     });
   } else {
+    showHeader();
     parseGeoXml();
   }
 }
@@ -227,7 +246,7 @@ function parseGeoXml(callback) {
       markerOptions: {optimized: false},
       suppressInfoWindows: true,
       afterParse: function (doc) {processDoc(doc, callback)} });
-    geoXml.parse('http://dl.dropboxusercontent.com/u/5125579/Dream%20Catchers/dreamer-map/us_states_noPoint.xml');
+    geoXml.parse('http://www.dreamerstogether.us/us_states_noPoint.xml');
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -237,6 +256,10 @@ function getURLParameter(name) {
     </script>
   </head>
   <body>
+    <div id="mapHeader">
+        <img src="images/logo.png" style="float: left; width: 160px">
+        <a class="button white" href="map.php?modal=want_form.php">Get Help</a> <a class="button white" href="map.php?modal=give_form.php">Give Help</a>
+    </div>      
     <div id="wrapper">
         <div id="map-canvas"></div>
         <div id="storyDiv"></div>
