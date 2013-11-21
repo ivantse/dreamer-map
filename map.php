@@ -131,6 +131,11 @@ function setupPolygon(polygon) {
   });
 }
 
+function hideModal() {
+  var modalContainer = $('#storyDiv');
+  modalContainer.hide();
+}
+
 function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'), {
        mapTypeControlOptions: {
