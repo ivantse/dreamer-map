@@ -120,15 +120,19 @@ function setupPolygon(polygon) {
     }
     polygon.setOptions(selectedOptions);
     selectedPolygon = polygon;
-        var newCenter = new google.maps.LatLng(e.latLng.ob, e.latLng.pb - 7);
-        map.setCenter(newCenter);
-        map.setZoom(6);
-        var storyDiv = $('#storyDiv');
-        storyDiv.css('display', 'block');
-        $.get('story_list.php', function(data) {
-          storyDiv.html(data);
-        });
+    var newCenter = new google.maps.LatLng(e.latLng.ob, e.latLng.pb - 7);
+    map.setCenter(newCenter);
+    map.setZoom(6);
+    showStories();
   });
+}
+
+function showStories() {
+    var storyDiv = $('#storyDiv');
+    storyDiv.css('display', 'block');
+    $.get('story_list.php', function(data) {
+      storyDiv.html(data);
+    });
 }
 
 function hideModal() {

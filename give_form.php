@@ -136,6 +136,8 @@ $("#give-form").submit(function(){
 		
 	//If successful, do something here
 	request.done(function(msg) {
+		hideModal();
+		showStories();
 		console.log(msg);		
 		var myJSONObject = eval('(' + msg + ')');
 			
