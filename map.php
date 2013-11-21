@@ -31,10 +31,10 @@
         left: 50px; 
         width: 45%;
         height: 100%;
-        background-color: white;
-        opacity: .5;
+        background-color: rgba(255, 255, 255, 0.5);
         z-index: 99;
         display: none;
+        padding: 20px;
       }
     </style>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
@@ -108,26 +108,18 @@ function setupPolygon(polygon) {
         map.setCenter(newCenter);
         map.setZoom(6);
         var storyDiv = document.getElementById('storyDiv');
-        console.log(storyDiv);
         storyDiv.setAttribute('style', 'display: block;');
   });
 }
 
 function initialize() {
-  /*
-  var mapOptions = {
-    zoom: 4,
-    minZoom: 4,
-    maxZoom: 7,
-    center: new google.maps.LatLng(38.891033,-88.022461)
-  };*/
   map = new google.maps.Map(document.getElementById('map-canvas'), {
        mapTypeControlOptions: {
          mapTypeIds: ['mystyle', google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.TERRAIN]
        },
-       center: new google.maps.LatLng(38.891033,-88.022461),
-       zoom: 4,
-       minZoom: 4,
+       center: new google.maps.LatLng(38.891033, -95.022461),
+       zoom: 5,
+       minZoom: 5,
        maxZoom: 7,
        mapTypeId: 'mystyle',
        disableDefaultUI: true
@@ -138,7 +130,7 @@ function initialize() {
   var modal = getURLParameter('modal')
   if (modal) {
     $.get(modal, function(data) {
-      var modalContainer = $('#modal-container');
+      var modalContainer = $('#storyDiv');
       modalContainer.html(data).show();
     });
   } else {
@@ -164,7 +156,6 @@ function getURLParameter(name) {
     <div id="wrapper">
         <div id="map-canvas"></div>
         <div id="storyDiv"></div> 
-        <div id="modal-container"></div>
     </div>
   </body>
 </html>
