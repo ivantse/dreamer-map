@@ -33,6 +33,14 @@
         z-index: 99;
         display: none;
       }
+
+      #modal-container {
+        position: absolute;
+        width: 500px;
+        background-color: grey;
+        z-index: 99;
+        display: none;
+      }
     </style>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script type="text/javascript" src="http://geoxml3.googlecode.com/svn/branches/polys/geoxml3.js"></script>
@@ -91,23 +99,36 @@ function initialize() {
   };
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-  infowindow = new google.maps.InfoWindow({});
-  geoXml = new geoXML3.parser({map: map,
-    infoWindow: infowindow,
-    singleInfoWindow: true,
-    zoom: false,
-    markerOptions: {optimized: false},
-    suppressInfoWindows: true,
-    afterParse: processDoc});
-  geoXml.parse('http://dl.dropboxusercontent.com/u/5125579/Dream%20Catchers/dreamer-map/us_states_noPoint.xml');
+  var modal = getURLParameter('modal')
+  if (modal) {
+    $.get(modal, function(data) {
+      var modalContainer = $('#modal-container');
+      modalContainer.html(data).show();
+    });
+  } else {
+    infowindow = new google.maps.InfoWindow({});
+    geoXml = new geoXML3.parser({map: map,
+      infoWindow: infowindow,
+      singleInfoWindow: true,
+      zoom: false,
+      markerOptions: {optimized: false},
+      suppressInfoWindows: true,
+      afterParse: processDoc});
+    geoXml.parse('http://dl.dropboxusercontent.com/u/5125579/Dream%20Catchers/dreamer-map/us_states_noPoint.xml');
+  }
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+}
     </script>
   </head>
   <body>
     <div id="wrapper">
         <div id="map-canvas"></div>
         <div id="storyDiv"></div> 
+        <div id="modal-container"></div>
     </div>
   </body>
 </html>
