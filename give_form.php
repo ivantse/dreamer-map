@@ -5,80 +5,80 @@ do_html_header('Give Form','give_form.css');
 ?>
 
 <div id="form-section" style="text-align: left;">
-<div class="wrapper">
+<h2>I Want To Help</h2>
 <form id="give-form" method="post" action="give_form_post.php">
 <div class="inline-form">
 
-<label>Name</label> <input type="text" name="name" />
+<label>Name*</label> <input type="text" name="name" value="Anonymous"/>
 
-<label>Zipcode</label> <input type="text" name="zipcode" />
+<label>Zipcode*</label> <input type="text" name="zipcode" />
 
-<label>State</label> 
+<label>State*</label> 
 <select name="state">
 	<option value=""></option>
-	<option value="AL">Alabama</option>
-	<option value="AK">Alaska</option>
-	<option value="AZ">Arizona</option>
-	<option value="AR">Arkansas</option>
-	<option value="CA">California</option>
-	<option value="CO">Colorado</option>
-	<option value="CT">Connecticut</option>
-	<option value="DE">Delaware</option>
-	<option value="DC">District Of Columbia</option>
-	<option value="FL">Florida</option>
-	<option value="GA">Georgia</option>
-	<option value="HI">Hawaii</option>
-	<option value="ID">Idaho</option>
-	<option value="IL">Illinois</option>
-	<option value="IN">Indiana</option>
-	<option value="IA">Iowa</option>
-	<option value="KS">Kansas</option>
-	<option value="KY">Kentucky</option>
-	<option value="LA">Louisiana</option>
-	<option value="ME">Maine</option>
-	<option value="MD">Maryland</option>
-	<option value="MA">Massachusetts</option>
-	<option value="MI">Michigan</option>
-	<option value="MN">Minnesota</option>
-	<option value="MS">Mississippi</option>
-	<option value="MO">Missouri</option>
-	<option value="MT">Montana</option>
-	<option value="NE">Nebraska</option>
-	<option value="NV">Nevada</option>
-	<option value="NH">New Hampshire</option>
-	<option value="NJ">New Jersey</option>
-	<option value="NM">New Mexico</option>
-	<option value="NY">New York</option>
-	<option value="NC">North Carolina</option>
-	<option value="ND">North Dakota</option>
-	<option value="OH">Ohio</option>
-	<option value="OK">Oklahoma</option>
-	<option value="OR">Oregon</option>
-	<option value="PA">Pennsylvania</option>
-	<option value="RI">Rhode Island</option>
-	<option value="SC">South Carolina</option>
-	<option value="SD">South Dakota</option>
-	<option value="TN">Tennessee</option>
-	<option value="TX">Texas</option>
-	<option value="UT">Utah</option>
-	<option value="VT">Vermont</option>
-	<option value="VA">Virginia</option>
-	<option value="WA">Washington</option>
-	<option value="WV">West Virginia</option>
-	<option value="WI">Wisconsin</option>
-	<option value="WY">Wyoming</option>
+	<option value="alabama">Alabama</option>
+	<option value="alaska">Alaska</option>
+	<option value="arizona">Arizona</option>
+	<option value="arkansas">Arkansas</option>
+	<option value="california">California</option>
+	<option value="colorado">Colorado</option>
+	<option value="connecticut">Connecticut</option>
+	<option value="delaware">Delaware</option>
+	<option value="districtofcolumbia">District Of Columbia</option>
+	<option value="florida">Florida</option>
+	<option value="georgia">Georgia</option>
+	<option value="hawaii">Hawaii</option>
+	<option value="idaho">Idaho</option>
+	<option value="illinois">Illinois</option>
+	<option value="indiana">Indiana</option>
+	<option value="iowa">Iowa</option>
+	<option value="kansas">Kansas</option>
+	<option value="kentucky">Kentucky</option>
+	<option value="louisiana">Louisiana</option>
+	<option value="maine">Maine</option>
+	<option value="maryland">Maryland</option>
+	<option value="massachusetts">Massachusetts</option>
+	<option value="michigan">Michigan</option>
+	<option value="minnesota">Minnesota</option>
+	<option value="mississippi">Mississippi</option>
+	<option value="missouri">Missouri</option>
+	<option value="montana">Montana</option>
+	<option value="nebraska">Nebraska</option>
+	<option value="nevada">Nevada</option>
+	<option value="newhampshire">New Hampshire</option>
+	<option value="newjersey">New Jersey</option>
+	<option value="newmexico">New Mexico</option>
+	<option value="newyork">New York</option>
+	<option value="northcarolina">North Carolina</option>
+	<option value="northdakota">North Dakota</option>
+	<option value="ohio">Ohio</option>
+	<option value="oklahoma">Oklahoma</option>
+	<option value="oregon">Oregon</option>
+	<option value="pennsylvania">Pennsylvania</option>
+	<option value="rhodeisland">Rhode Island</option>
+	<option value="southcarolina">South Carolina</option>
+	<option value="southdakota">South Dakota</option>
+	<option value="tennessee">Tennessee</option>
+	<option value="texas">Texas</option>
+	<option value="utah">Utah</option>
+	<option value="vermont">Vermont</option>
+	<option value="virginia">Virginia</option>
+	<option value="washington">Washington</option>
+	<option value="westvirginia">West Virginia</option>
+	<option value="wisconsin">Wisconsin</option>
+	<option value="wyoming">Wyoming</option>
 </select>
 </div>			
 
-<label>Story</label> <textarea name="story" rows="4" cols="27"></textarea><br />
+<label>Story*</label> <textarea name="story" rows="4" cols="27"></textarea><br />
 
 <input id="contact" type="checkbox" name="contact" value="true">Do you wish to be contacted?<br>
 
 <div id="contact-section" class="inline-form hide">
-<label>Email:</label><input type="email" name="email">
-<label>Facebook:</label><input type="facebook" name="facebook">
-<label>Twitter: </label><input type="facebook" name="twitter">
-<label>linkedIn:</label><input type="linkedin" name="linkedin">
+<label>Email:</label><input type="email" name="email" placeholder="example@email.com">
+<label>Facebook:</label><input type="facebook" name="facebook" placeholder="http://">
+<label>Twitter: </label><input type="facebook" name="twitter" placeholder="@">
+<label>LinkedIn:</label><input type="linkedin" name="linkedin" placeholder="http://">
 </div>
 
 
@@ -86,10 +86,11 @@ do_html_header('Give Form','give_form.css');
 <input id="education" type="checkbox" name="education" value="true">Do you wish to share your education and career with Dreamers?<br>
 
 <div id="education-section" class="inline-form hide">
-<label>School: </label><input type="school" name="school">
-<label>Company: </label> <input type="company" name="company"><br>
-<label>Major: <label/> <input type="major" name="major">
-<label>Grad Year: </label><input type="grad_year" name="grad_year">
+<label>School: </label><input type="school" name="school" placeholder="Stanford">
+<label>Major: <label/> <input type="major" name="major" placeholder="Computer Science">
+<label>Grad Year: </label><input type="grad_year" name="grad_year" style="width:34px;" placeholder="2017"><br>
+<label>Company: </label> <input type="company" name="company" placeholder="LinkedIn">
+
 </div>
 
 
@@ -136,13 +137,13 @@ $("#give-form").submit(function(){
 		
 	//If successful, do something here
 	request.done(function(msg) {
-		hideModal();
-		showStories();
+		//hideModal();
+		//showStories();
 		console.log(msg);		
-		var myJSONObject = eval('(' + msg + ')');
+		//var myJSONObject = eval('(' + msg + ')');
 			
       	//If successful, do something here		  	
-		console.log(myJSONObject.story.name);	
+		//console.log(myJSONObject.story.name);	
 	});
 	
 	request.fail(function(jqXHR, textStatus) {

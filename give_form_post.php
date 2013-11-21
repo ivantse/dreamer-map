@@ -10,7 +10,7 @@ $PHP_SELF=$_SERVER['PHP_SELF'];
 
 //Post Values
 $name=trim($_POST['name']);
-$zipcode=$_POST['zipcode'];
+$zipcode=empty($_POST['zipcode']) ? 0 : trim($_POST['zipcode']);
 $state=$_POST['state'];
 $story=trim($_POST['story']);
 $email=trim($_POST['email']);
@@ -20,7 +20,7 @@ $linkedin=trim($_POST['linkedin']);
 $school=trim($_POST['school']);
 $company=trim($_POST['company']);
 $major=trim($_POST['major']);
-$grad_year=trim($_POST['grad_year']);
+$grad_year= empty($_POST['grad_year']) ? 0 : trim($_POST['grad_year']);
 $submit=$_POST['submit'];
 
 //Validate form if submitted
@@ -39,6 +39,12 @@ if($submit){
 		$errors++;
 	}
 	
+	//state is not valid
+	if(strlen($state)<2){
+		$msg='Please select a valid state';
+		$errors++;
+	}
+	
 	//Attempt to Post in DB
 	if($errors==1){
 	    //Insert comment in DB
@@ -47,12 +53,7 @@ if($submit){
         
         if ( !($result = mysql_query($sql)) )
                die ('Could not insert story into table'.$sql);
-
-        header('Location: map.php');
-        exit();       
-        $sid = mysql_insert_id(); 
-        
-                
+                        
 		//Possible JSON formating
 		/*{"story": {
 		 * 	"sid": "5357",
@@ -75,9 +76,10 @@ if($submit){
 	
 		$json = json_encode($json_array);
 		*/
-	} //End if errors
-    
-    echo $json;
+        echo $state;
+	}else{
+		echo $msg;
+	}
 	exit();
 } //End submit
 echo "No Submit";
