@@ -59,6 +59,7 @@ var infoWindow;
 var selectedPolygon;
 var geoXmlDoc;
 
+
 var myStyle = [
        {
          featureType: "administrative",
@@ -158,10 +159,11 @@ function setupPolygon(polygon) {
     polygon.setOptions(selectedOptions);
     selectedPolygon = polygon;
     var newCenter;
+    var mapOffset = 4;
     if (e) {
-      newCenter = new google.maps.LatLng(e.latLng.ob, e.latLng.pb - 7);
+      newCenter = new google.maps.LatLng(e.latLng.ob, e.latLng.pb - mapOffset);
     } else {
-      newCenter = new google.maps.LatLng(polygon.bounds.getCenter().ob, polygon.bounds.getCenter().pb - 7);      
+      newCenter = new google.maps.LatLng(polygon.bounds.getCenter().ob, polygon.bounds.getCenter().pb - mapOffset);      
     }
     map.setCenter(newCenter);
     map.setZoom(6);
