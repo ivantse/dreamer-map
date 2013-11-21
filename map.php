@@ -83,8 +83,8 @@ var mouseOverOptions = {
 var normalOptions = {
   fillColor: "#CCCCCC",
   strokeColor: "#000000",
-  fillOpacity: 0.9,
-  strokeWidth: 10
+  fillOpacity: 0.5,
+  strokeWidth: 3
 };
 
 function processDoc(doc) {
