@@ -45,6 +45,7 @@
 var map;
 var geoXml;
 var infoWindow;
+var selectedPolygon;
 
 var myStyle = [
        {
@@ -82,9 +83,15 @@ var mouseOverOptions = {
 };
 var normalOptions = {
   fillColor: "#CCCCCC",
-  strokeColor: "#000000",
+  strokeColor: "#666666",
   fillOpacity: 0.5,
   strokeWidth: 3
+};
+var selectedOptions = {
+  fillColor: "#6666FF",
+  strokeColor: "#000000",
+  fillOpacity: 0.9,
+  strokeWidth: 10
 };
 
 function processDoc(doc) {
@@ -98,12 +105,21 @@ function processDoc(doc) {
 function setupPolygon(polygon) {
   polygon.setOptions(normalOptions);
   google.maps.event.addListener(polygon, 'mouseover', function() {
-    polygon.setOptions(mouseOverOptions);
+    if (selectedPolygon != polygon) {
+      polygon.setOptions(mouseOverOptions);
+    }
   });
   google.maps.event.addListener(polygon, 'mouseout', function() {
-    polygon.setOptions(normalOptions);
+    if (selectedPolygon != polygon) {
+      polygon.setOptions(normalOptions);      
+    }
   });
   google.maps.event.addListener(polygon,'click',function(e){
+    if (selectedPolygon) {
+      selectedPolygon.setOptions(normalOptions);
+    }
+    polygon.setOptions(selectedOptions);
+    selectedPolygon = polygon;
         var newCenter = new google.maps.LatLng(e.latLng.ob, e.latLng.pb - 7);
         map.setCenter(newCenter);
         map.setZoom(6);
