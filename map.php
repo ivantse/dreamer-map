@@ -39,10 +39,10 @@
       }
       
       #formDiv {
+        top: 50px;
         position: absolute; 
         width: 800px;
         margin: 0 auto;
-        height: 94%;
         background-color: rgba(255, 255, 255, 0.5);
         z-index: 99;
         display: none;
@@ -123,18 +123,18 @@ function processDoc(doc) {
     setupPolygon(placemarks[i].polygon);
   }
 }
-/*
-function findStateAndZoom(state) {
+
+function findPolygonForState(state) {
   var placemarks = geoXmlDoc.placemarks;
   for (var i = 0; i < placemarks.length; i++) {
     var stateTitle = getStateTitle(placemarks[i].polygon.title)
-    if (stateTitle == GET)
+    if (stateTitle == state)
     {
       return placemarks[i].polygon;
     }
   }
   return null;
-}*/
+}
 
 function setupPolygon(polygon) {
   polygon.setOptions(normalOptions);
@@ -154,7 +154,12 @@ function setupPolygon(polygon) {
     }
     polygon.setOptions(selectedOptions);
     selectedPolygon = polygon;
-    var newCenter = new google.maps.LatLng(e.latLng.ob, e.latLng.pb - 7);
+    var newCenter;
+    if (e) {
+      newCenter = new google.maps.LatLng(e.latLng.ob, e.latLng.pb - 7);
+    } else {
+      newCenter = new google.maps.LatLng(polygon.bounds.getCenter().ob, polygon.bounds.getCenter().pb - 7);      
+    }
     map.setCenter(newCenter);
     map.setZoom(6);
     showStories(getStateTitle(polygon.title));
@@ -177,6 +182,7 @@ function showStories(state) {
 function hideModal() {
   var modalContainer = $('#formDiv');
   modalContainer.hide();
+  parseGeoXml();
 }
 
 function initialize() {
@@ -203,7 +209,12 @@ function initialize() {
       modalContainer.css("left", ($(window).width() / 2) - (modalContainer.width() / 2));
     });
   } else {
-    infowindow = new google.maps.InfoWindow({});
+    parseGeoXml();
+  }
+}
+
+function parseGeoXml() {
+  infowindow = new google.maps.InfoWindow({});
     geoXml = new geoXML3.parser({map: map,
       infoWindow: infowindow,
       singleInfoWindow: true,
@@ -212,7 +223,6 @@ function initialize() {
       suppressInfoWindows: true,
       afterParse: processDoc});
     geoXml.parse('http://dl.dropboxusercontent.com/u/5125579/Dream%20Catchers/dreamer-map/us_states_noPoint.xml');
-  }
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
