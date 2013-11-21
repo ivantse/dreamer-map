@@ -6,7 +6,7 @@ do_html_header('Dreamers Together', 'index.css');
 <div id="cover">
 	<div id="logo-section">
 		<div class="wrapper">
-			<h1 id="logo">Dreamers Together</h1>
+			<img src="images/logo.gif" alt="Dreamers Together" />
 		</div>
 	</div>
 	<div id="mission-section">
