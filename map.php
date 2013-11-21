@@ -28,14 +28,13 @@
       
       #storyDiv {
         position: absolute;
-        left: 50px; 
-        width: 45%;
+        left: 20px; 
+        width: 470px;
         height: 94%;
         background-color: rgba(255, 255, 255, 0.5);
         z-index: 99;
         display: none;
-        padding: 20px;
-        overflow-y: scroll;
+        overflow-y: auto;
       }
       
       #formDiv {
@@ -116,11 +115,15 @@ var selectedOptions = {
   strokeWidth: 10
 };
 
-function processDoc(doc) {
+function processDoc(doc, callback) {
   geoXmlDoc = doc[0];
   var placemarks = geoXmlDoc.placemarks;
   for (var i = 0; i < placemarks.length; i++) {
     setupPolygon(placemarks[i].polygon);
+  }
+  if (callback)
+  {
+    callback();
   }
 }
 
@@ -179,10 +182,10 @@ function showStories(state) {
     });
 }
 
-function hideModal() {
+function hideModal(callback) {
   var modalContainer = $('#formDiv');
   modalContainer.hide();
-  parseGeoXml();
+  parseGeoXml(callback);
 }
 
 function initialize() {
@@ -213,7 +216,7 @@ function initialize() {
   }
 }
 
-function parseGeoXml() {
+function parseGeoXml(callback) {
   infowindow = new google.maps.InfoWindow({});
     geoXml = new geoXML3.parser({map: map,
       infoWindow: infowindow,
@@ -221,7 +224,7 @@ function parseGeoXml() {
       zoom: false,
       markerOptions: {optimized: false},
       suppressInfoWindows: true,
-      afterParse: processDoc});
+      afterParse: function (doc) {processDoc(doc, callback)} });
     geoXml.parse('http://dl.dropboxusercontent.com/u/5125579/Dream%20Catchers/dreamer-map/us_states_noPoint.xml');
 }
 google.maps.event.addDomListener(window, 'load', initialize);

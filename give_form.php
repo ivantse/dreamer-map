@@ -137,9 +137,12 @@ $("#give-form").submit(function(){
 		
 	//If successful, do something here
 	request.done(function(msg) {
-		//hideModal();
-		//showStories();
-		console.log(msg);		
+		hideModal(function() {
+			var poly = findPolygonForState(msg);
+			google.maps.event.trigger(poly, "click");
+			//showStories();
+			console.log(msg);
+			});		
 		//var myJSONObject = eval('(' + msg + ')');
 			
       	//If successful, do something here		  	
